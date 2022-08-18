@@ -3,9 +3,21 @@ const mongoose = require('mongoose')
 const ShortUrl = require('./models/shortUrl')
 const app = express()
 
-mongoose.connect('process.env.MONGODB_URI || mongodb://localhost/urlShortener', {
-    useNewUrlParser: true, useUnifiedTopology: true
-})
+
+const url = `mongodb+srv://devendra:Dev9450208417@cluster0.vh3kpfi.mongodb.net/?retryWrites=true&w=majority`;
+
+const connectionParams={
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
+}
+mongoose.connect(url,connectionParams)
+    .then( () => {
+        console.log('Connected to database ')
+    })
+    .catch( (err) => {
+        console.error(`Error connecting to the database. \n${err}`);
+    })
+
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false}))
@@ -30,4 +42,4 @@ app.get('/:shortUrl', async(req, res) => {
     res.redirect(shortUrl.full)
 })
 
-app.listen(process.env.PORT); 
+app.listen(process.env.PORT || 5000); 
