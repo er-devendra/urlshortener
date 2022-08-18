@@ -4,7 +4,7 @@ const ShortUrl = require('./models/shortUrl')
 const app = express()
 
 
-const url = `mongodb+srv://devendra:Dev9450208417@cluster0.vh3kpfi.mongodb.net/?retryWrites=true&w=majority`;
+const url = `<YOUR MONGODO CLOUD ATLAS DETAILS>`;
 
 const connectionParams={
     useNewUrlParser: true,
